@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date V1</title>
+
+</head>
+<body>
+
+    <h3>Date Picker</h3>
+    <input type="date" id="date"><br>
+    <button onclick="onClik()">Click here</button><br>
+    
+    
+    
+    Start Date : <a id="start_date"></a><br>
+    End Date : <a id="end_date"></a><br>
+
+    <script>
+
+function onClik() {
+    let selectedDate = document.getElementById("date").value;
+    let currentDate1 = new Date(selectedDate);
+    let selectedMonth = currentDate1.getMonth();
+    let selectedYear = currentDate1.getFullYear();
+    console.log(selectedYear);
+
+    let startDate = new Date(currentDate1.getFullYear(), currentDate1.getMonth(), 1);
+    let endDate = new Date(currentDate1.getFullYear(), currentDate1.getMonth() + 1, 0);
+
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+
+     let previousMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate());
+     let previousMonth = previousMonthDate.getMonth();
+    //  console.log(previousMonthDate);
+
+    
+     let nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+     let nextMonth = nextMonthDate.getMonth();
+    // document.getElementById("nextMonth").innerHTML = "Next Month: " + getFormattedDate(nextMonthDate);
+
+
+    if (selectedMonth == currentMonth) {
+        document.getElementById("start_date").style.color = "green";
+        document.getElementById("end_date").style.color = "green";
+    } 
+    else if(selectedMonth >= previousMonth) {
+        document.getElementById("start_date").style.color = "red";
+        document.getElementById("end_date").style.color = "red";
+    }
+    else if(selectedMonth <= nextMonth){
+        document.getElementById("start_date").style.color = "purple";
+        document.getElementById("end_date").style.color = "purple";
+
+    }
+
+    document.getElementById("start_date").innerHTML = "Start Date: " + startDate.toDateString();
+    document.getElementById("end_date").innerHTML = "End Date: " + endDate.toDateString();
+}
+
+    </script>
+    
+</body>
+</html>
